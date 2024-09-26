@@ -2,7 +2,8 @@
 
 * [LLM 論文整理與筆記](README.md)
 * [基礎觀念](ji-chu-guan-nian/README.md)
-  * [Transformer](ji-chu-guan-nian/transformer.md)
+  * [Transformer](ji-chu-guan-nian/transformer/README.md)
+    * [Attention is all you need](ji-chu-guan-nian/transformer/attention-is-all-you-need.md)
   * [GPT](ji-chu-guan-nian/gpt.md)
   * [BERT](ji-chu-guan-nian/bert.md)
 * [新穎模型](xin-ying-mo-xing/README.md)
