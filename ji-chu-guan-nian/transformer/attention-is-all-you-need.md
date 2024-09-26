@@ -146,7 +146,7 @@ $$
 
 <figure><img src="../../.gitbook/assets/image (3).png" alt="" width="563"><figcaption></figcaption></figure>
 
-#### 7. 結論 (Conclusion)
+## 7. 結論 (Conclusion)
 
 * 本文介紹了 Transformer，這是第一個完全基於注意力的序列轉導模型，它用多頭自注意力機制取代了編碼器-解碼器架構中最常用的循環層。
 * 對於翻譯任務，Transformer 的訓練速度明顯快於基於循環層或卷積層的架構。
