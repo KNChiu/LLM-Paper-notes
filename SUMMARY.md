@@ -9,5 +9,6 @@
 * [新穎模型](xin-ying-mo-xing/README.md)
   * [Llama](xin-ying-mo-xing/llama.md)
   * [Phi](xin-ying-mo-xing/phi.md)
-  * [Qwen](xin-ying-mo-xing/qwen.md)
+  * [Qwen](xin-ying-mo-xing/qwen/README.md)
+    * [Qwen2 Technical Report](xin-ying-mo-xing/qwen/qwen2-technical-report.md)
 * [Agent](agent.md)
