@@ -49,9 +49,9 @@ Meta 推出的新一代大型語言模型 Llama 3.2，以及全新的 Llama Stac
 * 3B 模型在指令遵循、摘要、提示重寫和工具使用等任務上的表現優於 Gemma 2 2.6B 和 Phi 3.5-mini 模型，而 1B 模型則與 Gemma 相當。
 * 在涵蓋多種語言的 150 多個基準數據集上評估了模型的性能。
 
-<figure><img src="../../.gitbook/assets/image.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4).png" alt="" width="563"><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
 
 
