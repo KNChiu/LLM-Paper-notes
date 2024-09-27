@@ -20,7 +20,7 @@ description: LLM 領域的開山之作，此篇論文提出的 Transformer 深�
 
 * Transformer 遵循編碼器-解碼器結構，其中編碼器（**Encoder** ）將輸入序列的符號表示映射到連續表示序列，解碼器（**Decoder**）根據編碼器的輸出生成輸出序列，Transformer 的編碼器和解碼器都使用堆疊的自注意力機制（self-attention）和逐點（point-wise）以及全連接層（fully connected layers），如下圖 1 。
 
-<figure><img src="../../.gitbook/assets/image.png" alt="" width="258"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2).png" alt="" width="258"><figcaption></figcaption></figure>
 
 ### **3.1 編碼器和解碼器堆棧（Encoder and Decoder Stacks）**
 
@@ -35,7 +35,7 @@ description: LLM 領域的開山之作，此篇論文提出的 Transformer 深�
 * 輸出為值的加權和，其中分配給每個 value 的權重都是由 query 與相應 key 的 compatibility function 計算的。
 * 論文中使用的注意力機制稱為缩放點積注意力（Scaled Dot-Product Attention）。
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
 #### **3.2.1 缩放點積注意力（Scaled Dot-Product Attention）**
 
@@ -137,7 +137,7 @@ $$
 
 * 為了評估 Transformer 不同組件的重要性，論文改變了基本模型的不同之處，測量了英德翻譯在開發集 newstest2013 上的性能變化。
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### **6.3 英語成分句法分析 (English Constituency Parsing)**
 
