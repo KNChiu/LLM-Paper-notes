@@ -11,4 +11,7 @@
   * [Phi](xin-ying-mo-xing/phi.md)
   * [Qwen](xin-ying-mo-xing/qwen/README.md)
     * [Qwen2 Technical Report](xin-ying-mo-xing/qwen/qwen2-technical-report.md)
+* [技術彙整](ji-shu-hui-zheng/README.md)
+  * [MoE](ji-shu-hui-zheng/moe/README.md)
+    * [DeepSeekMoE](ji-shu-hui-zheng/moe/deepseekmoe.md)
 * [Agent](agent.md)
