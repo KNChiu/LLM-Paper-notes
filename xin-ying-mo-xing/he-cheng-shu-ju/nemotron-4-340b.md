@@ -14,7 +14,7 @@ description: Nemotron-4 340B Technical Report
 
 ### 模型價值
 
-* 模型[對齊過程](broken-reference)中 98% 的訓練數據都是 Nemotron-4-340B-Base 生成的。
+* 模型中 98% 的訓練數據都是 Nemotron-4-340B-Base 生成的。
 * 所以模型具有高品質數據生成的能力，以訓練其他的語言模型。
 * 開源了合成數據的生成流程。
 
