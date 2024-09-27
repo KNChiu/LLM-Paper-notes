@@ -15,6 +15,8 @@
     * [Phi-3 / Phi-3-vision](xin-ying-mo-xing/phi/phi-3-phi-3-vision.md)
   * [Qwen](xin-ying-mo-xing/qwen/README.md)
     * [Qwen2 Technical Report](xin-ying-mo-xing/qwen/qwen2-technical-report.md)
+  * [合成數據](xin-ying-mo-xing/he-cheng-shu-ju/README.md)
+    * [Nemotron-4 340B](xin-ying-mo-xing/he-cheng-shu-ju/nemotron-4-340b.md)
 * [技術彙整](ji-shu-hui-zheng/README.md)
   * [MoE](ji-shu-hui-zheng/moe/README.md)
     * [DeepSeekMoE](ji-shu-hui-zheng/moe/deepseekmoe.md)
