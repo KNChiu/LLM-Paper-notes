@@ -26,28 +26,28 @@ description: 'phi-1: Textbooks Are All You Need，高品質數據集對小模型
 * phi-1 和 phi-1-base 的預訓練使用 CodeTextbook 數據集(phi-1-base 29%)，微調使用 CodeExercises 數據集(phi-1 51%)。
 * 模型參數小與架構簡單，但數據質量有顯著提高模型性能，且解鎖了意想不到的程式碼生成功能。
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption><p>增加計算時間(135 -> 1090 GPU hr)與數據(26B -> 76B）或增加模型參數（350M -> 1.3B），且在 CodeTextbook 資料集上訓練的基於 phi-1 的模型僅用 1.3B 參數模型即可實現 29% 的 HumanEval 效能。</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (18).png" alt=""><figcaption><p>增加計算時間(135 -> 1090 GPU hr)與數據(26B -> 76B）或增加模型參數（350M -> 1.3B），且在 CodeTextbook 資料集上訓練的基於 phi-1 的模型僅用 1.3B 參數模型即可實現 29% 的 HumanEval 效能。</p></figcaption></figure>
 
 ### 3. 湧現(emergence)性質
 
 * 比較 phi-1 和 phi-1-small 發現模型參數對湧現能力的重要性。
 * phi-1 展現出許多 phi-1-base 沒有的能力，如更高的程式碼準確性和靈活性。
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
 
 ### 4. 替代基準測試
 
 * CodeExercises 數據集可能會產生記憶(訓練數據污染)
 * 為了最大限度地減少資料外洩（data leakage) 使用其他測試方法如不同的程式碼生成任務來評估模型的性能。
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption><p>對 50 個非常規程式問題的理解進行評分</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (20).png" alt=""><figcaption><p>對 50 個非常規程式問題的理解進行評分</p></figcaption></figure>
 
 ### 5. 訓練數據污染的研究
 
 * 分析 HumanEval 基準測試中的數據污染問題。
 * 強調訓練數據的透明度和可靠性對於模型性能的重要性。
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption><p>移除 CodeExercises 資料集中與 HumanEval「相似」的內容</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (21).png" alt=""><figcaption><p>移除 CodeExercises 資料集中與 HumanEval「相似」的內容</p></figcaption></figure>
 
 ### 重點整理
 

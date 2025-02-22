@@ -74,7 +74,7 @@ description: Nemotron-4 340B Technical Report
   * BigBenchHard: 多樣化的挑戰任務，專為超出當前模型能力的任務設計。強調推理和創造能力。
   * ARC-Challenge: 測試模型科學推理能力的問題集，測試模型在回答科學和常識問題上的能力。
 
-<figure><img src="../../.gitbook/assets/image (25).png" alt="" width="342"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (49).png" alt="" width="342"><figcaption></figcaption></figure>
 
 ### Nemotron-4-340B-Instruct
 
@@ -86,7 +86,7 @@ description: Nemotron-4 340B Technical Report
   * IFEval: 針對自然語言指示的回應能力，評估其指令理解和執行的準確性和效率。
   * AlpacaEval 2.0: 設計為簡化複雜指令，進行快速、自動化、可靠的模型評估。
 
-<figure><img src="../../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (50).png" alt=""><figcaption></figcaption></figure>
 
 ### Nemotron-4-340B-Reward
 
@@ -102,9 +102,9 @@ description: Nemotron-4 340B Technical Report
   * Chat-Hard: 專注於多輪對話測試，測試更為複雜和多變的對話情境下的模型表現。
   * Safety  安全性測試集專注於模型回答是否安全，避免生成有害內容，並確保在各種情境下的表現符合安全要求。
 
-<figure><img src="../../.gitbook/assets/image (27).png" alt="" width="342"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (51).png" alt="" width="342"><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (28).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (52).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## 6. 合成數據生成
 
@@ -132,7 +132,7 @@ description: Nemotron-4 340B Technical Report
 * 對於給定的文檔，限制範圍指令（例如 : 「總結給定的文本」 或 「根據給定的文本，xxx 是什麼？」）。
 * 使用手動定義的範本(例如 : 從數學和 Python 程式設計中收集關鍵字)。
 
-<figure><img src="../../.gitbook/assets/image (29).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (53).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### 合成對話生成
 
@@ -166,7 +166,7 @@ description: Nemotron-4 340B Technical Report
 * 當使用相同的基礎模型時，更高品質的資料導致更強的指導模型。
 * 進行多輪資料產生和精煉，不斷提高模型的品質。
 
-<figure><img src="../../.gitbook/assets/image (31).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (55).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### 合成數據質量控制
 
@@ -188,7 +188,7 @@ description: Nemotron-4 340B Technical Report
 
 **TFEval:** 評估模型在對話中保持主題一致性和應對偏離主題干擾的能力。
 
-<figure><img src="../../.gitbook/assets/image (32).png" alt=""><figcaption><p>粗體表示所有模型中得分最高，底線表示開源模型中得分最高</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (56).png" alt=""><figcaption><p>粗體表示所有模型中得分最高，底線表示開源模型中得分最高</p></figcaption></figure>
 
 ### 人為評估(專門註釋團隊)
 
@@ -196,12 +196,12 @@ description: Nemotron-4 340B Technical Report
 
 根據10 個不同的任務類別進行6個級別評估，包括5個品質的級別加上1個定義模型完全未能回答的級別。
 
-<figure><img src="../../.gitbook/assets/image (33).png" alt=""><figcaption><p>比較 Nemotron-4-340B-Instruct 與 GPT-4-1106-preview 在十個任務中人為判定</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (57).png" alt=""><figcaption><p>比較 Nemotron-4-340B-Instruct 與 GPT-4-1106-preview 在十個任務中人為判定</p></figcaption></figure>
 
 #### 人類對生成長度的感知
 
-<figure><img src="../../.gitbook/assets/image (34).png" alt=""><figcaption><p>下劃線表示感知適當長度率較高的模型</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (58).png" alt=""><figcaption><p>下劃線表示感知適當長度率較高的模型</p></figcaption></figure>
 
 ### **安全評估**
 
-<figure><img src="../../.gitbook/assets/image (35).png" alt=""><figcaption><p>AEGIS 安全評估中不安全回應佔比，越低越好</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (59).png" alt=""><figcaption><p>AEGIS 安全評估中不安全回應佔比，越低越好</p></figcaption></figure>

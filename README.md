@@ -1,6 +1,5 @@
----
-description: LLM 經典或值得研究的論文整理
----
+# LLM Paper Reviews and Notes
 
-# LLM 論文整理與筆記
+* **Key Papers:** I’ve curated and analyzed some of the most influential papers in the LLM field, like Llama, Gemma, Phi and Qwen.
+* **Passion Projects:** Additionally, I’m exploring topics that spark my interest, offering my interpretations and insights on emerging ideas and trends.
 

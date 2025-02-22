@@ -49,9 +49,9 @@ Meta 推出的新一代大型語言模型 Llama 3.2，以及全新的 Llama Stac
 * 3B 模型在指令遵循、摘要、提示重寫和工具使用等任務上的表現優於 Gemma 2 2.6B 和 Phi 3.5-mini 模型，而 1B 模型則與 Gemma 相當。
 * 在涵蓋多種語言的 150 多個基準數據集上評估了模型的性能。
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (22).png" alt="" width="563"><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (23).png" alt="" width="563"><figcaption></figcaption></figure>
 
 
 
@@ -69,7 +69,7 @@ Meta 推出的新一代大型語言模型 Llama 3.2，以及全新的 Llama Stac
 
 * 將 Llama 3.1 8B 和 70B 模型中的 logits 合併到模型開發的預訓練階段，其中這些較大模型的輸出（logits）用作 token 級目標。剪枝後使用知識蒸餾來恢復性能。
 
-<figure><img src="../../.gitbook/assets/image (10).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (34).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## **Llama Stack**
 
@@ -79,7 +79,7 @@ Meta 推出的新一代大型語言模型 Llama 3.2，以及全新的 Llama Stac
 * 構建了 API 的參考實現，用於推理、工具使用和 RAG。
 * 推出了 Llama Stack Distribution，作為一種打包多個 API 提供者的方法，這些提供者可以很好地協同工作，為開發人員提供單一端點。
 
-<figure><img src="../../.gitbook/assets/image (11).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (35).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### **內容**
 
@@ -93,7 +93,7 @@ Meta 推出的新一代大型語言模型 Llama 3.2，以及全新的 Llama Stac
     * 透過 PyTorch ExecuTorch 在 iOS 上實現的設備端 Llama Stack Distribution。
     * 由 Dell 支援的本地 Llama Stack Distribution。
 
-    <figure><img src="../../.gitbook/assets/image (12).png" alt="" width="563"><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (36).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## **系統級安全**
 
