@@ -31,4 +31,5 @@
     * [TAG](ji-shu-hui-zheng/text-to-sql/tag.md)
     * [CHESS](ji-shu-hui-zheng/text-to-sql/chess.md)
     * [Text2SQL Eval](ji-shu-hui-zheng/text-to-sql/text2sql-eval.md)
-* [Agent](agent.md)
+* [Agent](agent/README.md)
+  * [Model Context Protocol (MCP)](agent/model-context-protocol-mcp.md)
