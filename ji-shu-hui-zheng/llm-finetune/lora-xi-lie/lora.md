@@ -15,7 +15,7 @@ description: 'LoRA: Low-Rank Adaptation of Large Language Models'
 * LoRA 的核心概念是將模型微調過程中參數的變化，表示成低秩矩陣分解的形式，在 GPT-3 175B 模型中，可訓練參數數量可以減少 10,000 倍，GPU 記憶體需求減少 3 倍。
 * LoRA 在推論階段不會有額外的延遲，因為學習到的低秩矩陣可以與原始權重合併。
 
-<figure><img src="../.gitbook/assets/image (70).png" alt="" width="186"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (70).png" alt="" width="186"><figcaption></figcaption></figure>
 
 ## 2. 問題陳述
 
@@ -25,7 +25,7 @@ description: 'LoRA: Low-Rank Adaptation of Large Language Models'
 
 *   模型初始化為預訓練權重  $$Φ_0$$  並透過重複更新為 $$Φ_0+ΔΦ$$
 
-    <figure><img src="../.gitbook/assets/image (71).png" alt="" width="284"><figcaption></figcaption></figure>
+    <figure><img src="../../../.gitbook/assets/image (71).png" alt="" width="284"><figcaption></figcaption></figure>
 
 ### 微調的主要缺點
 
