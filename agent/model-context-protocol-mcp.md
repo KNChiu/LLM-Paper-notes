@@ -4,11 +4,11 @@
 
 隨著大型語言模型（LLM）在各個領域的廣泛應用，單靠模型內部的知識及推理能力已難以滿足愈發複雜的應用需求。儘管 LLM Agent 能夠模擬人類思考並進行對話，其運作本質上僅限於處理文字資訊，並未能夠直接連接外部資源，如數據庫、檔案系統和第三方 API。
 
-為了解決這一限制，Anthropic 等公司提出了模型上下文協議（Model Context Protocol, MCP）。其目的是讓 LLM Agent 能夠：
+為了解決這一限制，Anthropic 等公司提出了模型上下文協議（[Model Context Protocol, MCP](https://modelcontextprotocol.io/introduction)）。其目的是讓 LLM Agent 能夠：
 
-以標準化的方式連接外部數據和工具。\
-運用模組化設計來擴展其功能與應用範圍。\
-透過 MCP，LLM Agent 的能力將能進一步增強，滿足更複雜的需求和挑戰。
+* 以標準化的方式連接外部數據和工具。
+* 運用模組化設計來擴展其功能與應用範圍。
+* 透過 MCP，LLM Agent 的能力將能進一步增強，滿足更複雜的需求和挑戰。
 
 ## MCP 的定義與主要功能
 
