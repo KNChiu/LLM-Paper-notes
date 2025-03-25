@@ -24,6 +24,7 @@
     * [早期參數微調](ji-shu-hui-zheng/llm-finetune/zao-qi-can-shu-wei-diao/README.md)
       * [Adapter](ji-shu-hui-zheng/llm-finetune/zao-qi-can-shu-wei-diao/adapter.md)
       * [Prefix-Tuning](ji-shu-hui-zheng/llm-finetune/zao-qi-can-shu-wei-diao/prefix-tuning.md)
+      * [Prompt Tuning](ji-shu-hui-zheng/llm-finetune/zao-qi-can-shu-wei-diao/prompt-tuning.md)
     * [LoRA 系列](ji-shu-hui-zheng/llm-finetune/lora-xi-lie/README.md)
       * [LoRA](ji-shu-hui-zheng/llm-finetune/lora-xi-lie/lora.md)
   * [MoE](ji-shu-hui-zheng/moe/README.md)
