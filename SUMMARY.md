@@ -17,6 +17,7 @@
     * [Qwen2 Technical Report](xin-ying-mo-xing/qwen/qwen2-technical-report.md)
   * [Gemma](xin-ying-mo-xing/gemma/README.md)
     * [Gemma 2](xin-ying-mo-xing/gemma/gemma-2.md)
+    * [Gemma 3](xin-ying-mo-xing/gemma/gemma-3.md)
   * [合成數據](xin-ying-mo-xing/he-cheng-shu-ju/README.md)
     * [Nemotron-4 340B](xin-ying-mo-xing/he-cheng-shu-ju/nemotron-4-340b.md)
 * [技術彙整](ji-shu-hui-zheng/README.md)
