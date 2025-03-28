@@ -28,6 +28,7 @@
       * [Prompt Tuning](ji-shu-hui-zheng/llm-finetune/zao-qi-can-shu-wei-diao/prompt-tuning.md)
     * [LoRA 系列](ji-shu-hui-zheng/llm-finetune/lora-xi-lie/README.md)
       * [LoRA](ji-shu-hui-zheng/llm-finetune/lora-xi-lie/lora.md)
+  * [VLM](ji-shu-hui-zheng/vlm.md)
   * [MoE](ji-shu-hui-zheng/moe/README.md)
     * [DeepSeekMoE](ji-shu-hui-zheng/moe/deepseekmoe.md)
   * [Text to SQL](ji-shu-hui-zheng/text-to-sql/README.md)
