@@ -108,3 +108,27 @@ description: Gemma 3 Technical Report
 * **模型的尺寸和架構設計旨在與標準硬體相容**，並且架構上的改進也是為了在這些硬體上保持性能
 * **高度重視責任、安全和保障**，並在開發過程中整合了增強的內部安全流程
 * 未來的研究方向可能包括進一步提升模型在各種能力上的表現，探索更有效的長上下文處理方法，以及持續提升模型的安全性和責任性。
+
+
+
+## **重要技術說明**
+
+* **Grouped-Query Attention (GQA)**：模型採用 GQA 機制，這是一種注意力機制，有助於提高推理效率。
+* **RMSNorm**：模型使用了 RMSNorm (Root Mean Square Layer Normalization) 進行層歸一化。
+* **QK-norm**：Gemma 3 使用 QK-norm 取代了先前版本中的 soft-capping。
+* **局部滑動窗口自注意力 (Local Sliding Window Self-Attention)**：為了處理長上下文並減少記憶體使用，模型使用了局部注意力機制，其關注的上下文窗口較小（1024 tokens）。
+* **全局自注意力 (Global Self-Attention)**：模型中也包含全局注意力機制，使其能夠關注整個輸入上下文。
+* **局部與全局注意力層的交錯 (Interleaving of Local/Global Layers)**：Gemma 3 的架構採用 5 個局部注意力層後接 1 個全局注意力層的比例。
+* **RoPE (Rotary Positional Embeddings)**：為了處理長上下文，模型增加了全局自注意力層的 RoPE 基礎頻率。
+* **知識蒸餾 (Knowledge Distillation)**：Gemma 3 模型透過知識蒸餾進行訓練，不同階段使用了不同策略的知識蒸餾。
+* **SentencePiece Tokenizer**：模型使用與 Gemini 2.0 相同的 SentencePiece tokenizer，支援多語言並具有 byte-level encoding。
+* **量化感知訓練 (Quantization Aware Training, QAT)**：為了提供更高效的模型版本，使用了 QAT 技術來訓練量化後的模型。
+* **Pan and Scan (P\&S)**：在處理視覺輸入時，模型使用了 Pan and Scan 方法來處理不同解析度的圖像。
+* **SigLIP Vision Encoder**：Gemma 3 整合了 SigLIP 視覺編碼器，使其具備視覺理解能力。
+* **強化學習微調 (Reinforcement Learning Finetuning, RLHF)**：指令調整後的模型使用了基於改進的 BOND、WARM 和 WARP 版本的強化學習方法進行微調，以提升模型的能力和安全性。
+* **TPU (Tensor Processing Unit)**：模型的訓練在 Google 的 TPU 基礎設施上進行，包括 TPUv4、TPUv5e 和 TPUv5p。
+* **ZeRO-3**：訓練過程中使用了 ZeRO-3 (Zero Redundancy Optimizer) 的實作來分片優化器狀態，以支援更大規模的模型訓練。
+* **Pathways**：多 pod 訓練使用了 Pathways 的方法進行資料副本歸約。
+* **GSPMD (Global Single Program Multiple Data)**：模型使用了 GSPMD 分區器進行平行化。
+* **MegaScale XLA Compiler**：XLA 編譯器用於優化模型在 TPU 上的效能。
+* **知識蒸餾的後訓練 (Post-training with Knowledge Distillation)**：在指令調整階段，利用大型 IT 教師模型進行知識蒸餾，提升學生模型的性能。
