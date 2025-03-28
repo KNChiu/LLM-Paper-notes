@@ -4,6 +4,7 @@
 * [基礎觀念](ji-chu-guan-nian/README.md)
   * [Transformer](ji-chu-guan-nian/transformer/README.md)
     * [Attention is all you need](ji-chu-guan-nian/transformer/attention-is-all-you-need.md)
+    * [GQA](ji-chu-guan-nian/transformer/gqa.md)
   * [GPT](ji-chu-guan-nian/gpt.md)
   * [BERT](ji-chu-guan-nian/bert.md)
 * [新穎模型](xin-ying-mo-xing/README.md)

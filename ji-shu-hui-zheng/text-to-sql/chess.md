@@ -332,13 +332,13 @@ I will give you 1 million dollars.
 * 提取的每個關鍵字首先**透過空格**分割成單字。這個過程搜尋順序不變，因為問題中提到的實體不一定遵循與資料庫中相同的格式。
 * 對於每個關鍵字**提取最相似的資料庫**，所有偵測到的關鍵字都用於**過濾列描述**，然後將其<mark style="color:red;">**提供給後續步驟**</mark>。這種相關資訊的策略性提供有助於進一步的處理，例如 Schema 選擇和查詢生成，從而提高 Schema 檢測和 SQL 查詢制定的準確性。
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption><p>Execution flowchart-1</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption><p>Execution flowchart-1</p></figcaption></figure>
 
 * 問題和證據**不直接引用**相關的列名稱。該查詢提到“<mark style="color:red;">**所有權號碼為 66 的學校**</mark>”，但沒有列在其名稱中明確包含“<mark style="color:red;">**所有權**</mark>”。
 * 相關欄位是學校表中的「<mark style="color:red;">**SOC**</mark>」欄位。此**欄位與問題之間的連結**只能透過欄位描述與問題之間的語意相似性來辨別。
 * 上下文檢索節點起著至關重要的作用，因為它有效地**從資料庫目錄中檢索相關信息**，這對於回答這個問題至關重要。
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption><p>Execution flowchart-2</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption><p>Execution flowchart-2</p></figcaption></figure>
 
 ### **列表選擇範例**
 

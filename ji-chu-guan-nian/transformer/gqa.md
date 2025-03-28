@@ -1,0 +1,109 @@
+---
+description: >-
+  Training Generalized Multi-Query Transformer Models from Multi-Head
+  Checkpoints
+---
+
+# GQA
+
+提出了創新的分組查詢注意力（Grouped-Query Attention, GQA）機制，以及一種高效的遷移學習方法，能將現有的多頭注意力（Multi-Head Attention, MHA）模型轉換為更高效的注意力變體，同時保持模型性能。研究表明，GQA 機制能在推理速度和模型質量之間取得優秀的平衡，僅需原始預訓練計算量的 5% 即可完成模型轉換，為大型語言模型的部署與應用提供了重要的實用解決方案。
+
+## 過往技術
+
+### Transformer 模型中的注意力機制與推理瓶頸
+
+自回歸解碼器推理（Autoregressive decoder inference）是 Transformer 模型面臨的嚴重瓶頸，主要源於內存帶寬限制。在每個解碼步驟中，模型需要載入解碼器權重以及所有注意力層的 key 和 value 向量，這導致了內存開銷。隨著模型規模和序列長度的增加，這一問題變得尤為突出，成為大型語言模型高效部署的主要障礙。
+
+### 多頭注意力機制（MHA）
+
+傳統的 Transformer 架構採用多頭注意力機制（MHA），每個注意力頭都有獨立的 query、key 和 value 投影矩陣。雖然這種設計有利於模型捕捉不同層次的特徵，但在推理階段，尤其是自回歸生成任務中，大量的key-value 緩存需要佔用 GPU 內存並在每個時間步加載。
+
+### 多查詢注意力（MQA）
+
+為解決上述問題，研究人員提出了多查詢注意力（Multi-Query Attention, MQA）機制。MQA 保留多個query 頭，但只使用單一的 key 和 value 頭，從而大幅減少內存帶寬需求和 key-value 緩存大小。
+
+MQA 遇到問題：
+
+1. 模型質量可能下降，影響生成內容的準確性和連貫性
+2. 訓練不穩定性問題
+3. 為推理效率而單獨訓練一個新模型成本高昂
+
+這些局限性促使研究人員尋求更合適的解決方案，既能提高推理效率又能維持模型質量。
+
+## 分組查詢注意力（GQA）
+
+### GQA 的核心思想與設計理念 : MHA 與 MQA 的折衷方案
+
+論文提出的分組查詢注意力（Grouped-Query Attention, GQA）是對多查詢注意力的一種泛化，通過在 MHA 和 MQA 之間取得平衡來優化模型性能和推理效率。GQA 的核心思想是將 query 分成多個組，每組共享一個 key 和一個 value，這種設計使得key-value緩存的大小減少為原來的1/G，顯著降低了內存帶寬需求，同時比完全的MQA保留了更多的模型表達能力。
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption><p>MHA, GQA, MQA 比較</p></figcaption></figure>
+
+GQA-G 表示有 G 個組的 GQA 配置：
+
+* 當 G=1 時，對應於 MQA，所有 query 頭共享一個 key-value 頭
+* 當 G=H 時（H為頭數），對應於傳統的 MHA，每個 query 頭都有自己的 key-value 頭
+* 當 1\<G\<H 時，實現了 MHA 和 MQA 之間的過渡
+
+這種設計允許模型在保持較高質量的同時，顯著減少 key-value 緩存的大小，從而加速推理過程。實驗表明，適當選擇的 G 值可以實現接近 MHA 的質量和接近 MQA 的速度。
+
+### GQA的實現機制
+
+在實現 GQA 時，論文採用了一種巧妙的參數共享策略。當將多頭檢查點轉換為 GQA 檢查點時，通過對組內所有原始頭進行平均池化（mean-pooling）來構建每個組的 key 和 value 頭。
+
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption><p>所有頭部的鍵和值投影矩陣被平均匯集到一個頭部</p></figcaption></figure>
+
+## 高效轉換預訓練檢查點的策略
+
+### Uptraining
+
+論文提出的另一個重要貢獻是uptraining方法，這是一種能夠高效地將現有MHA檢查點轉換為MQA或GQA模型的技術[1](https://openreview.net/forum?id=hmOwOZWzYE)。Uptraining過程包含兩個關鍵步驟：
+
+1. 檢查點轉換：將原始多頭模型的權重轉換為目標架構（MQA或GQA）的格式。對於key和value投影矩陣，論文發現通過平均池化所有頭的投影矩陣效果最佳，優於隨機選擇一個頭或從頭開始隨機初始化新的key和value頭[2](https://aclanthology.org/2023.emnlp-main.298.pdf)[4](https://arxiv.org/pdf/2305.13245.pdf)。
+2. 額外預訓練：轉換後的檢查點需要經過一定比例(α)的額外預訓練，以適應新的結構。研究表明，僅需原始預訓練計算量的5%即可實現良好的效果，大大降低了資源需求[1](https://openreview.net/forum?id=hmOwOZWzYE)[5](https://aclanthology.org/2023.emnlp-main.298/)。
+
+這種方法的優勢在於，它允許從現有的高質量多頭檢查點出發，高效地獲得具有相近性能但推理速度更快的模型，而無需從頭開始訓練[2](https://aclanthology.org/2023.emnlp-main.298.pdf)。
+
+### Uptraining的效率與效果
+
+研究結果顯示，通過uptraining得到的GQA模型能夠達到接近原始MHA模型的質量，同時顯著提高推理速度。這一發現對於實際應用具有重要意義，尤其是對那些計算資源有限但需要部署大型語言模型的場景[1](https://openreview.net/forum?id=hmOwOZWzYE)[5](https://aclanthology.org/2023.emnlp-main.298/)。
+
+值得注意的是，相比於從頭訓練一個MQA或GQA模型，uptraining方法僅需5%的原始預訓練計算量，大大降低了模型優化的成本和門檻[2](https://aclanthology.org/2023.emnlp-main.298.pdf)。這使得已有的開源多頭模型（如T5和LLaMA）能夠便捷地轉換為更高效的版本，擴大了這些模型的應用範圍。
+
+### GQA與其他注意力優化方法的比較
+
+### 與MQA的比較
+
+相比於MQA，GQA通過引入多組key-value頭，在保持較高推理速度的同時，顯著減輕了模型質量下降的問題。實驗表明，適當配置的GQA可以實現接近MHA的性能，同時保持接近MQA的速度優勢[1](https://openreview.net/forum?id=hmOwOZWzYE)[5](https://aclanthology.org/2023.emnlp-main.298/)。
+
+### 與DHA的聯繫與區別
+
+最近的研究還提出了解耦頭注意力(Decoupled-Head Attention, DHA)機制，這是對GQA思想的進一步發展[3](https://arxiv.org/abs/2406.06567)。DHA自適應地配置各層的key頭和value頭的組共享策略，能夠更靈活地平衡性能和效率。
+
+DHA的主要特點包括：
+
+1. 自適應配置不同層的組共享策略
+2. 基於相似頭的漸進式線性融合
+3. 僅需原始模型預訓練預算的0.25%即可達到97.6%的性能
+4. 相比GQA，DHA在0.01%預訓練預算下可實現高達13.93%的性能提升[3](https://arxiv.org/abs/2406.06567)
+
+這些進展表明，注意力機制的優化是一個活躍的研究方向，有望進一步提高大型語言模型的推理效率。
+
+### 實驗結果與性能評估
+
+論文通過大量實驗，驗證了GQA方法的有效性。結果表明，經過uptraining的GQA模型能夠在多項標準基準測試中達到接近原始MHA模型的性能，同時顯著減少了推理過程中的內存帶寬需求和key-value緩存大小[1](https://openreview.net/forum?id=hmOwOZWzYE)[2](https://aclanthology.org/2023.emnlp-main.298.pdf)。
+
+特別值得注意的是，實驗證明了平均池化在轉換檢查點時優於其他策略（如隨機選擇或重新初始化），這為實踐提供了明確的指導[4](https://arxiv.org/pdf/2305.13245.pdf)。此外，適當選擇組數G可以在性能和效率之間取得良好的平衡，為不同應用場景提供了靈活的選擇[5](https://aclanthology.org/2023.emnlp-main.298/)。
+
+這些實驗結果為大型語言模型的高效部署提供了實用的解決方案，特別是對於那些資源受限的應用場景，GQA方法提供了一種兼顧質量和效率的選擇。
+
+### 結論
+
+GQA(分組查詢注意力)及其uptraining方法代表了Transformer模型推理優化的重要進展。通過在多頭注意力(MHA)和多查詢注意力(MQA)之間取得平衡，GQA實現了高質量與高效率的雙重目標。這一方法的關鍵創新點在於：
+
+1. 提出了GQA作為MHA和MQA之間的泛化形式，允許靈活調整組數以平衡性能和效率
+2. 設計了高效的uptraining方法，僅需原始預訓練計算量的5%即可將現有多頭檢查點轉換為GQA模型
+3. 證明了平均池化是轉換檢查點時的最佳策略，為實踐提供了明確指導
+
+這些貢獻為大型語言模型的部署和應用開闢了新的可能性，特別是在計算資源有限的環境中。隨著DHA等後續研究的出現，注意力機制的優化仍然是一個充滿活力的研究領域，有望進一步提高模型效率。
+
+未來的研究方向可能包括：探索更靈活的頭部共享策略、自動搜索最優組配置、與其他效率優化方法（如量化和剪枝）的結合，以及針對特定下游任務的自適應注意力優化等。這些努力將共同推動大型語言模型向更高效、更易部署的方向發展。

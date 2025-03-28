@@ -23,7 +23,7 @@ description: The Power of Scale for Parameter-Efficient Prompt Tuning
     組成。
 * **凍結模型的優勢**：允許單個通用模型同時支援多種任務，而無需為每個下游任務準備獨立模型副本，這在模型尺寸持續增長的情況下特別具有吸引力。
 
-<figure><img src="../../../.gitbook/assets/image.png" alt="" width="375"><figcaption><p>圖1: 隨著模型規模的增加，提示調整的表現變得越來越具有競爭力</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2).png" alt="" width="375"><figcaption><p>圖1: 隨著模型規模的增加，提示調整的表現變得越來越具有競爭力</p></figcaption></figure>
 
 * **提示的不足之處**：基於提示的適應存在幾個關鍵缺陷：
   * 任務描述容易出錯且需人工干預。
@@ -93,7 +93,7 @@ description: The Power of Scale for Parameter-Efficient Prompt Tuning
 
 在不理想的「跨度損壞」設置中，發現不同模型尺寸之間存在不穩定性，Small模型的表現優於較大的Base、Large和XXL模型。經檢查發現，許多任務中，中等尺寸模型未能學會輸出合法的類別標籤，因而分數為0%。常見的錯誤模式包括從輸入中複製子跨度或預測空字符串。此外，這一糟糕的性能並非由於提示調整中的隨機差異，因為我們觀察到每個尺寸的三次運行之間差異微小。這些結果表明，使用經由「跨度損壞」預訓練的模型可能不夠可靠，其中只有5個模型中的2個能夠良好運作，而LM適應版本則在所有模型尺寸下均能穩定表現。
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt="" width="563"><figcaption><p>圖3. 各種超參數對快速調整性能的影響（3 次運行的平均值和標準差）</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt="" width="563"><figcaption><p>圖3. 各種超參數對快速調整性能的影響（3 次運行的平均值和標準差）</p></figcaption></figure>
 
 ## 與相關方法的比較
 
@@ -105,7 +105,7 @@ description: The Power of Scale for Parameter-Efficient Prompt Tuning
     * WARP (Hambardzumyan et al., 2021): 在此方法中，提示參數被添加至輸入層。
     * P-tuning (Liu et al., 2021): 此方法中，可學習的連續提示依據人工設計的模式在嵌入的輸入中交替出現。
 
-    <figure><img src="../../../.gitbook/assets/image (2).png" alt="" width="563"><figcaption><p>圖4. 各種適配技術的參數</p></figcaption></figure>
+    <figure><img src="../../../.gitbook/assets/image (2) (1).png" alt="" width="563"><figcaption><p>圖4. 各種適配技術的參數</p></figcaption></figure>
 
 ## **領域遷移的強韌性**
 
