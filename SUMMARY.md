@@ -3,6 +3,7 @@
 * [LLM Paper Reviews and Notes](README.md)
 * [基礎模型](ji-chu-mo-xing/README.md)
   * [Transformer](ji-chu-mo-xing/transformer/README.md)
+    * [RMSNorm](ji-chu-mo-xing/transformer/rmsnorm.md)
     * [GQA](ji-chu-mo-xing/transformer/gqa.md)
   * [GPT](ji-chu-mo-xing/gpt.md)
   * [BERT](ji-chu-mo-xing/bert.md)
