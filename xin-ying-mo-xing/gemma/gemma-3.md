@@ -48,17 +48,31 @@ description: Gemma 3 Technical Report
 * 使用 **post-norm 和 pre-norm 搭配 RMSNorm**。
 * 受到其他研究的啟發，Gemma 3 **使用 QK-norm 取代了 Gemma 2 的 soft-capping**。
 * 一個關鍵的架構差異是 **局部滑動窗口自注意力 (local sliding window self-attention) 和全局自注意力 (global self-attention) 的交錯使用，比例為 5 個局部層對應 1 個全局層 (5:1 interleaving)**，且模型的第一層是局部層，局部注意力層的滑動窗口大小限制為 **1024 tokens**
+* 長上下文 Gemma 3 模型支援 128K 標記的上下文長度，但 1B 模型除外 (32K)
+
+<figure><img src="../../.gitbook/assets/image (91).png" alt=""><figcaption><p>Gemma 3 模型的參數</p></figcaption></figure>
+
 * 全局自注意力層的 **RoPE 基礎頻率從 10k 增加到 1M**，而局部層則保持在 10k
+
+### 視覺架構
+
+* 視覺編碼器 (Vision encoder): 使用了 SigLIP 編碼器及CLIP 損失訓練 Vision Transformer，4B、12B 和 27B 模型之間共享視覺編碼器，並在訓練期間保持其凍結。
+* 平移和掃描 (P\&S): 以 896 × 896 做為輸入導致在處理非正方形縱橫比和高解析度影像時出現偽影，導致文字無法讀取或小物體消失，將影像分割成大小相等、不重疊的裁剪區域，覆蓋整個影像，並將其調整為 896×896 像素以傳遞給編碼器。
 
 ### **實現細節**
 
-* **訓練數據:** Gemma 3 的預訓練使用了 **比 Gemma 2 更大的 token**，27B 模型訓練了 14T tokens，其中包含文本和圖像的混合數據。同時也 **增加了多語言數據的比例**
+* **訓練數據:** Gemma 3 的預訓練使用了 **比 Gemma 2 更大的 token**，27B 使用 14T ，12B 使用 12T ，4B  使用 4T，1B 使用 2T，其中包含文本和圖像的混合數據。同時也 **增加了多語言數據的比例**
 * **Tokenizer:** Gemma 3 使用 **與 Gemini 2.0 相同的 SentencePiece tokenizer**，具有 split digits、preserved whitespace 和 byte-level encodings，詞彙量為 **262k**。這個 tokenizer 更平衡地支援非英語語言。
 * **過濾:** 訓練數據使用了 **過濾技術** 以減少不希望的或不安全的內容，並移除個人資訊和敏感數據。評估集也從預訓練數據中**去汙染**，並採取措施減少敏感輸出的重複。還使用了 **品質重加權 (quality reweighing)** 以減少低品質數據的影響。
 * **知識蒸餾:** 從教師模型的 logits 中學習。
 * **量化感知訓練 (Quantization Aware Training, QAT):** 除了原始檢查點外，還提供了 **量化版本** 的模型，這些版本透過使用 QAT 對原始模型進行少量步驟 (約 5000 步) 的微調獲得。目標是模仿非量化檢查點的機率分布。
+
+<figure><img src="../../.gitbook/assets/image (93).png" alt=""><figcaption><p>各量化的 KV 快取與記憶體佔用</p></figcaption></figure>
+
 * **硬體環境:** 模型在 **TPUv4、TPUv5e 和 TPUv5p** 上進行訓練，具體配置因模型大小而異。視覺編碼器的 embeddings 會預先計算，以降低語言模型訓練的成本，使用 **ZeRO-3 的實作** 來分片優化器狀態。
 * **指令調整 (Instruction-Tuning):** 預訓練模型透過 **改進的後訓練方法** 轉變為指令調整模型，該方法依賴於 **從大型 IT 教師模型進行的知識蒸餾**，以及基於改進的 BOND、WARM 和 WARP 版本的 **強化學習微調階段 (RL finetuning phase)**。使用多種獎勵函數來提升模型在多方面的能力，同時最小化有害性。
+
+<figure><img src="../../.gitbook/assets/image (94).png" alt=""><figcaption><p>Gemma IT 模型格式，新增 [BOS] 標記</p></figcaption></figure>
 
 ### **創新點**
 
@@ -85,15 +99,25 @@ description: Gemma 3 Technical Report
 ### **發現**
 
 * **Gemma 3-27B-IT 在 LMSys Chatbot Arena (前 10 名)**，其 Elo 分數顯著高於 Gemma 2。
+
+<figure><img src="../../.gitbook/assets/image (95).png" alt="" width="528"><figcaption><p>Gemma 3 27B IT 模型在聊天機器人領域評估</p></figcaption></figure>
+
 * 在多個基準測試中，**Gemma 3 的指令調整模型 (IT models) 的性能優於其前身**，並且在某些方面與更大規模的模型 (如 DeepSeek-V3、LLaMA 3 405B 和 Qwen2.5-70B) 具有競爭力。
 * **在數學、聊天、指令遵循和多語言能力方面有顯著提升，在記憶長文本方面的比例遠低於先前的模型**。
+
+<figure><img src="../../.gitbook/assets/image (97).png" alt="" width="539"><figcaption><p>指令微調 (IT) 模型在不同能力的零樣本基準上的表現</p></figcaption></figure>
+
 * 在被歸類為記憶的輸出中，**沒有觀察到個人資訊。**
 * 改變局部與全局注意力層的比例對 perplexity 的影響很小，這證明了其在減少記憶體使用方面的有效性
 * 更高的圖像編碼器解析度通常能帶來更好的視覺任務性能。
 * **Pan & Scan (P\&S) 方法顯著提升了處理具有不同長寬比或包含文本的圖像相關任務的性能**
-* 與 PaliGemma 2 相比，**Gemma 3 在文件理解基準測試上表現出色**，且在相同的解析度下，遷移成本更低。
-* 預訓練模型和指令調整模型在 **長上下文基準測試上展現了良好的性能**，儘管在極長的上下文長度下性能會下降
-* **在生物、放射性和核子等領域的知識水平較低**。
+* 與 Gemma 2 相比，**Gemma 3 在文件理解基準測試上表現出色**，且在相同的解析度下，遷移成本更低。
+
+<figure><img src="../../.gitbook/assets/image (98).png" alt="" width="563"><figcaption><p>Gemma 2 和 3 中不同預訓練模型在一般能力上的表現總結</p></figcaption></figure>
+
+* Enabling long context: 使用 32K 序列對模型進行預訓練，然後在預訓練結束時將 4B、12B 和 27B 模型擴展到 128K 個標記，同時重新縮放 RoPE，但隨著規模的不斷擴大，其性能會迅速下降。
+
+<figure><img src="../../.gitbook/assets/image (100).png" alt="" width="277"><figcaption><p>RoPE 重新縮放之前和之後預訓練模型的長上下文表現</p></figcaption></figure>
 
 ### **限制**
 
@@ -108,8 +132,6 @@ description: Gemma 3 Technical Report
 * **模型的尺寸和架構設計旨在與標準硬體相容**，並且架構上的改進也是為了在這些硬體上保持性能
 * **高度重視責任、安全和保障**，並在開發過程中整合了增強的內部安全流程
 * 未來的研究方向可能包括進一步提升模型在各種能力上的表現，探索更有效的長上下文處理方法，以及持續提升模型的安全性和責任性。
-
-
 
 ## **重要技術說明**
 
