@@ -1,12 +1,11 @@
 # Table of contents
 
 * [LLM Paper Reviews and Notes](README.md)
-* [基礎觀念](ji-chu-guan-nian/README.md)
-  * [Transformer](ji-chu-guan-nian/transformer/README.md)
-    * [Attention is all you need](ji-chu-guan-nian/transformer/attention-is-all-you-need.md)
-    * [GQA](ji-chu-guan-nian/transformer/gqa.md)
-  * [GPT](ji-chu-guan-nian/gpt.md)
-  * [BERT](ji-chu-guan-nian/bert.md)
+* [基礎模型](ji-chu-mo-xing/README.md)
+  * [Transformer](ji-chu-mo-xing/transformer/README.md)
+    * [GQA](ji-chu-mo-xing/transformer/gqa.md)
+  * [GPT](ji-chu-mo-xing/gpt.md)
+  * [BERT](ji-chu-mo-xing/bert.md)
 * [新穎模型](xin-ying-mo-xing/README.md)
   * [Llama](xin-ying-mo-xing/llama/README.md)
     * [Llama3.2](xin-ying-mo-xing/llama/llama3.2.md)

@@ -1,8 +1,8 @@
 ---
-description: LLM 領域的開山之作，此篇論文提出的 Transformer 深遠影響視覺、自然語言以及許多領域
+description: Attention is all you need
 ---
 
-# Attention is all you need
+# Transformer
 
 ## 1. 緒論（Introduction）
 
