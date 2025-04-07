@@ -38,7 +38,7 @@ MHA 與 MQA 的折衷方案
 
 論文提出的分組查詢注意力（Grouped-Query Attention, GQA）是對多查詢注意力的一種泛化，通過在 MHA 和 MQA 之間取得平衡來優化模型性能和推理效率。GQA 的核心思想是將 query 分成多個組，每組共享一個 key 和一個 value，這種設計使得key-value緩存的大小減少為原來的1/G，顯著降低了內存帶寬需求，同時比完全的MQA保留了更多的模型表達能力。
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption><p>MHA, GQA, MQA 比較</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption><p>MHA, GQA, MQA 比較</p></figcaption></figure>
 
 GQA-G 表示有 G 個組的 GQA 配置：
 
@@ -52,7 +52,7 @@ GQA-G 表示有 G 個組的 GQA 配置：
 
 在實現 GQA 時，論文採用了一種巧妙的參數共享策略。當將多頭檢查點轉換為 GQA 檢查點時，通過對組內所有原始頭進行平均池化（mean-pooling）來構建每個組的 key 和 value 頭。
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption><p>所有頭部的鍵和值投影矩陣被平均匯集到一個頭部</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>所有頭部的鍵和值投影矩陣被平均匯集到一個頭部</p></figcaption></figure>
 
 ## 高效轉換預訓練檢查點的策略（uptraining ）
 

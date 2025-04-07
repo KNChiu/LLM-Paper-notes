@@ -16,7 +16,7 @@ description: 'Prefix-Tuning: Optimizing Continuous Prompts for Generation'
 * 微調是利用大型預訓練語言模型執行下游任務的主要方法，但其缺點在於需要更新和儲存整個語言模型的所有參數。
 * 對於擁有數十億參數的大型語言模型（例如 GPT-2 和 GPT-3），為每個任務儲存一個完整的模型副本在成本上可能非常高昂。
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1).png" alt="" width="563"><figcaption><p>微調（上）更新所有參數（紅色）。前綴調整（下）凍結參數並僅優化前綴（紅色）</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1).png" alt="" width="563"><figcaption><p>微調（上）更新所有參數（紅色）。前綴調整（下）凍結參數並僅優化前綴（紅色）</p></figcaption></figure>
 
 ## **相關工作 (Related Work)**
 
@@ -46,7 +46,7 @@ description: 'Prefix-Tuning: Optimizing Continuous Prompts for Generation'
 
 為了穩定優化和提高性能，前綴矩陣 Pθ 通過一個較小的矩陣 P'θ 和一個大型前饋神經網路 (MLPθ) 進行重參數化。訓練完成後，重參數化的參數可以丟棄，只需要保存前綴 Pθ。
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1).png" alt="" width="563"><figcaption><p>使用自回歸 LM（上）和編碼器-解碼器模型（下）進行前綴調整的註解範例</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1).png" alt="" width="563"><figcaption><p>使用自回歸 LM（上）和編碼器-解碼器模型（下）進行前綴調整的註解範例</p></figcaption></figure>
 
 ## **實驗設置 (Experimental Setup):**
 
@@ -68,7 +68,7 @@ description: 'Prefix-Tuning: Optimizing Continuous Prompts for Generation'
 
 前綴微調僅添加 0.1% 的特定於任務的參數，就能有效地進行表格到文本生成，**優於其他輕量級基線 (ADAPTER 和 FT-TOP2)，並在性能上與完整微調相當甚至更好。** 尤其是在 DART 這個更複雜的開放領域數據集上表現良好，其具有良好的泛化能力。
 
-<figure><img src="../../../.gitbook/assets/image (3) (1).png" alt="" width="563"><figcaption><p>E2E（左）、WebNLG（中）和 DART（右）</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1).png" alt="" width="563"><figcaption><p>E2E（左）、WebNLG（中）和 DART（右）</p></figcaption></figure>
 
 #### **摘要 (Summarization)**
 

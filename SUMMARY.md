@@ -10,6 +10,7 @@
 * [新穎模型](xin-ying-mo-xing/README.md)
   * [Llama](xin-ying-mo-xing/llama/README.md)
     * [Llama3.2](xin-ying-mo-xing/llama/llama3.2.md)
+    * [Llama4](xin-ying-mo-xing/llama/llama4.md)
   * [Phi](xin-ying-mo-xing/phi/README.md)
     * [Phi-1](xin-ying-mo-xing/phi/phi-1.md)
     * [Phi-1.5](xin-ying-mo-xing/phi/phi-1.5.md)
